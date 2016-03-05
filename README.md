@@ -13,7 +13,7 @@ This is just a small exmaple chat application using AWS IoT MQTT Broker.
 
 2. Put the "things" name into the text field of "Name" and click "Create".
 ![aws things console2](https://raw.githubusercontent.com/wiki/manamanmana/aws-mqtt-chat-example/images/aws-things2.PNG)
-![aws things result](https://raw.githubusercontent.com/wiki/manamanmana/aws-mqtt-chat-example/images/aws-thingsi-result.PNG)
+![aws things result](https://raw.githubusercontent.com/wiki/manamanmana/aws-mqtt-chat-example/images/aws-things-result.PNG)
 
 3. Select the thing which you created in the bottom, and click "Connect a device" button in the right pane.
 
