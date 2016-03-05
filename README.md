@@ -23,6 +23,10 @@ This is just a small exmaple chat application using AWS IoT MQTT Broker.
 
 6. Click "Confirm & start connecting". You can see the "Sample code" JSON in the page. Copy it and save it as a file (ex: ExampleChat.json) This file is used for the Chat Clients later.
 
+7. We need "root-CA.crt" specified in the JSON file #6 step. You can get it from [here](https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem). You can see the detail description [here](https://github.com/aws/aws-iot-device-sdk-js/blob/master/README.md#specify-a-directory-containing-default-named-certificates).
+
+
+
 
 
 
