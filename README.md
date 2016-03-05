@@ -19,7 +19,7 @@ This is just a small exmaple chat application using AWS IoT MQTT Broker.
 
 4. On the next page, select "NodeJS" and click "Generate certificate and policy".
 
-5. A few seconds later you can see "Download public key", "Download private key" and "Download certificate" links in the page. Download the certs from the 3 links.
+5. A few seconds later you can see "Download public key", "Download private key" and "Download certificate" links in the page. Download the certs from the 3 links. They are used for authentication for AWS IoT MQTT Broker endpint.
 
 6. Click "Confirm & start connecting". You can see the "Sample code" JSON in the page. Copy it and save it as a file (ex: ExampleChat.json) This file is used for the Chat Clients later.
 
