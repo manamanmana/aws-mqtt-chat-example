@@ -1,0 +1,9 @@
+{
+	"host": "ANZDTGL16L7XB.iot.ap-northeast-1.amazonaws.com",
+	"port": 8883,
+	"clientId": "ExampleChat",
+	"thingName": "ExampleChat",
+	"caCert": "root-CA.crt",
+	"clientCert": "e6b0434674-certificate.pem.crt",
+	"privateKey": "e6b0434674-private.pem.key"
+}
