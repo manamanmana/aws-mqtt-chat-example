@@ -51,7 +51,7 @@ func (m *MQTTClient) Subscribe(topic string, qos int) error {
 }
 
 func (m *MQTTClient) Publish(topic string, qos int, input string) error {
-	var token MQTT.Token = m.Client.Publish(topic, byte(qos), true, input)
+	var token MQTT.Token = m.Client.Publish(topic, byte(qos), false, input)
 	if token.Wait() && token.Error() != nil {
 		log.SetOutput(os.Stderr)
 		log.Error(token.Error())

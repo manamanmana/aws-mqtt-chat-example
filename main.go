@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	log "github.com/Sirupsen/logrus"
@@ -13,15 +14,24 @@ var args *mqtt.ArgOption
 func init() {
 	args = &mqtt.ArgOption{}
 
-	flag.StringVar(&args.Topic, "topic", "", "Topic name to subscribe and publish")
+	flag.StringVar(&args.PubTopic, "pub-topic", "", "Topic name to publish")
+	flag.StringVar(&args.SubTopic, "sub-topic", "", "Topic name to subscribe")
 	flag.IntVar(&args.Qos, "qos", 0, "QoS of the topic communication.")
 	flag.StringVar(&args.Conf, "conf", "", "Config file JSON path and name for accessing to AWS IoT endpoint")
 	flag.StringVar(&args.ClientId, "client-id", "", "client id to connect with")
 	flag.Parse()
 
-	if args.Topic == "" {
+	if args.PubTopic == "" {
 		log.SetOutput(os.Stderr)
-		msg := "Please specify topic with --topic option."
+		msg := "Please specify topic to publish with --pub-topic option."
+		log.Error(msg)
+		fmt.Fprintln(os.Stderr, msg)
+		os.Exit(1)
+	}
+
+	if args.SubTopic == "" {
+		log.SetOutput(os.Stderr)
+		msg := "Please specify topic to subscribe with --sub-topic option."
 		log.Error(msg)
 		fmt.Fprintln(os.Stderr, msg)
 		os.Exit(1)
@@ -37,10 +47,10 @@ func init() {
 }
 
 func input(pub chan string) {
-	for {
-		var input string
-		fmt.Scanln(&input)
-		pub <- input
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		in := scanner.Text()
+		pub <- in
 	}
 }
 
@@ -64,7 +74,7 @@ func main() {
 		os.Exit(3)
 	}
 
-	go client.Subscribe(args.Topic, args.Qos)
+	go client.Subscribe(args.SubTopic, args.Qos)
 
 	go input(client.PubChan)
 
@@ -74,7 +84,7 @@ func main() {
 			msg := string(s.Payload())
 			fmt.Printf("\nmsg:%s\n", msg)
 		case p := <-client.PubChan:
-			client.Publish(args.Topic, args.Qos, p)
+			client.Publish(args.PubTopic, args.Qos, p)
 		}
 	}
 

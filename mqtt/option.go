@@ -10,7 +10,8 @@ import (
 var MaxClientIdLen = 8
 
 type ArgOption struct {
-	Topic    string
+	PubTopic string
+	SubTopic string
 	Qos      int
 	Conf     string
 	ClientId string
