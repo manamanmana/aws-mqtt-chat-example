@@ -25,7 +25,31 @@ This is just a small exmaple chat application using AWS IoT MQTT Broker.
 
 7. We need "root-CA.crt" specified in the JSON file #6 step. You can get it from [here](https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem). You can see the detail description [here](https://github.com/aws/aws-iot-device-sdk-js/blob/master/README.md#specify-a-directory-containing-default-named-certificates).
 
+### Install this chat example
 
+```
+$ go get github.com/manamanmana/aws-mqtt-chat-example
+```
+
+aws-mqtt-chat-example bin will be installed into your `$GOPATH/bin/`
+
+### Place them all
+
+Place the aws-mqtt-chat-example binary and all the certification files and configulation JSON file on the same directory.
+
+```
+# Launch a terminal and move the directory where you placed them
+# Asume configulation JSON file name as "ExampleChat.json"
+$ ./aws-mqtt-chat-example --pub-topic="/example/chat/term1/publish" --sub-topic="/example/chat/term2/publish" --conf=./ExampleChat.json
+```
+
+```
+# Launch another terminal and move the directory where you placed them
+# Asume configulation JSON file name as "ExampleChat.json"
+$ ./aws-mqtt-chat-example --pub-topic="/example/chat/term2/publish" --sub-topic="/example/chat/term1/publish" --conf=./ExampleChat.json
+```
+
+If you type something in a terminal and return, it will be shown in another terminal.
 
 
 
