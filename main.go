@@ -17,6 +17,7 @@ func init() {
 	flag.IntVar(&args.Qos, "qos", 0, "QoS of the topic communication.")
 	flag.StringVar(&args.Conf, "conf", "", "Config file JSON path and name for accessing to AWS IoT endpoint")
 	flag.StringVar(&args.ClientId, "client-id", "", "client id to connect with")
+	flag.Parse()
 
 	if args.Topic == "" {
 		log.SetOutput(os.Stderr)
