@@ -14,6 +14,10 @@ func init() {
 	args = &mqtt.ArgOption{}
 
 	flag.StringVar(&args.Topic, "topic", "", "Topic name to subscribe and publish")
+	flag.IntVar(&args.Qos, "qos", 0, "QoS of the topic communication.")
+	flag.StringVar(&args.Conf, "conf", "", "Config file JSON path and name for accessing to AWS IoT endpoint")
+	flag.StringVar(&args.ClientId, "client-id", "", "client id to connect with")
+
 	if args.Topic == "" {
 		log.SetOutput(os.Stderr)
 		msg := "Please specify topic with --topic option."
@@ -22,9 +26,6 @@ func init() {
 		os.Exit(1)
 	}
 
-	flag.IntVar(&args.Qos, "qos", 0, "QoS of the topic communication.")
-
-	flag.StringVar(&args.Conf, "conf", "", "Config file JSON path and name for accessing to AWS IoT endpoint")
 	if args.Conf == "" {
 		log.SetOutput(os.Stderr)
 		msg := "Please specify Config file path with --conf option."
@@ -32,10 +33,6 @@ func init() {
 		fmt.Fprintln(os.Stderr, msg)
 		os.Exit(1)
 	}
-
-	flag.StringVar(&args.ClientId, "client-id", "", "client id to connect with")
-
-	flag.Parse()
 }
 
 func input(pub chan string) {
